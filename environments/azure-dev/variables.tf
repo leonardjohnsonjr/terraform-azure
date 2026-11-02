@@ -94,10 +94,10 @@ variable "azure_vm_roles" {
   description = "Map of Azure VM roles to VM settings."
   type = map(object({
     instance_count               = number
-    vm_size                      = optional(string, "Standard_D2s_v3")
-    os_disk_size_gb              = optional(number, 128)
+    vm_size                      = optional(string, "Standard_B1s")
+    os_disk_size_gb              = optional(number, 64)
     os_disk_caching              = optional(string, "ReadWrite")
-    os_disk_storage_account_type = optional(string, "StandardSSD_LRS")
+    os_disk_storage_account_type = optional(string, "Premium_LRS")
     associate_public_ip_address  = optional(bool, true)
     subnet_id                    = optional(string)
     network_security_group_id    = optional(string)
