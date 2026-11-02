@@ -19,3 +19,5 @@ secrets.*
 .codex/
 .venv/
 .vscode/
+# Allow committing the secrets sample file (contains placeholders only)
+!secrets.auto.tfvars.sample
