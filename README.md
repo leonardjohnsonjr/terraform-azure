@@ -53,7 +53,15 @@ State is stored locally (`backend.tf`) as `terraform.tfstate`.
 
 Set it locally, before running `plan`/`apply`, using one of:
 
-- A gitignored `secrets.auto.tfvars` file in `environments/azure-dev/`:
+- A gitignored `secrets.auto.tfvars` file in `environments/azure-dev/`. Start
+  by copying the committed sample file, then edit the copy and replace the
+  placeholder with your real password:
+
+  ```bash
+  cd environments/azure-dev
+  cp secrets.auto.tfvars.sample secrets.auto.tfvars
+  chmod 600 secrets.auto.tfvars
+  ```
 
   ```hcl
   admin_password = "<your strong password>"
@@ -61,7 +69,11 @@ Set it locally, before running `plan`/`apply`, using one of:
 
   Terraform loads any `*.auto.tfvars` file automatically — no extra flags
   needed. This file (along with `secrets.*`, `*.auto.tfvars`, `.env*`, and all
-  Terraform state/vars files) is excluded via [.gitignore](.gitignore).
+  Terraform state/vars files) is excluded via [.gitignore](.gitignore). The
+  only exception is
+  [secrets.auto.tfvars.sample](environments/azure-dev/secrets.auto.tfvars.sample),
+  which holds placeholders only and is not loaded by Terraform. Never put real
+  values in the sample file.
 
 - Or an environment variable, which avoids writing the password to disk at all:
 
@@ -82,6 +94,11 @@ this repo) — state files are gitignored, and the files in
 
 ```bash
 cd environments/azure-dev
+
+# One-time: create your local secrets file from the sample, then edit it
+# (see "Secrets" above; skip if you use TF_VAR_admin_password instead)
+cp secrets.auto.tfvars.sample secrets.auto.tfvars
+chmod 600 secrets.auto.tfvars
 
 # One-time: provider plugins and backend
 terraform init
@@ -111,4 +128,5 @@ terraform destroy
 Copy `environments/azure-dev` to a new directory (e.g. `environments/azure-prod`),
 update `terraform.tfvars` and `backend.tf` (point `path` at a different state
 file, or move to a remote backend), and supply its own `admin_password` via
-`secrets.auto.tfvars` or `TF_VAR_admin_password`.
+`secrets.auto.tfvars` (copied from `secrets.auto.tfvars.sample`) or
+`TF_VAR_admin_password`.
