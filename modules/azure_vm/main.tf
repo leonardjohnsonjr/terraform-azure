@@ -39,7 +39,7 @@ locals {
   image_reference = {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2022-datacenter-azure-edition"
+    sku       = "2022-datacenter-smalldisk-g2"
     version   = "latest"
   }
 }
