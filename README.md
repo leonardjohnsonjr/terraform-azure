@@ -11,9 +11,11 @@ configurations.
 ├── modules/
 │   └── azure_vm/          # Reusable module: resource group, VNet/subnet, NSG,
 │                          # public IPs, NICs, and Windows VMs
-└── environments/
-    └── azure-dev/         # Dev environment: wires the module up with concrete
-                           # variable values and a local state backend
+├── environments/
+│   └── azure-dev/         # Dev environment: wires the module up with concrete
+│                          # variable values and a local state backend
+├── terraform-azure-presentation.odp           # Project slides (LibreOffice Impress)
+└── terraform-azure-project-presentation.pptx  # Project slides (PowerPoint)
 ```
 
 ### `modules/azure_vm`
@@ -130,3 +132,13 @@ update `terraform.tfvars` and `backend.tf` (point `path` at a different state
 file, or move to a remote backend), and supply its own `admin_password` via
 `secrets.auto.tfvars` (copied from `secrets.auto.tfvars.sample`) or
 `TF_VAR_admin_password`.
+
+## Presentation
+
+Slides describing this project are kept at the repository root:
+
+- [terraform-azure-presentation.odp](terraform-azure-presentation.odp) — the
+  current deck, created with LibreOffice Impress (OpenDocument format). Open it
+  with LibreOffice Impress, or import it into PowerPoint / Google Slides.
+- [terraform-azure-project-presentation.pptx](terraform-azure-project-presentation.pptx)
+  — the earlier PowerPoint deck.
